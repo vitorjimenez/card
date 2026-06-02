@@ -1,261 +1,1113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a0e27">
-    <title>Vitor Jimenez - Desenvolvedor Web | Criação de Sites e Aplicações</title>
-    <meta name="description" content="Desenvolvedor Full Stack especializado em criação de sites modernos e aplicações web. Java, React, Next.js e mais.">
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0e27" />
+    <meta name="fav"
+    <title>
+      Vitor Jimenez - Desenvolvedor Web | Criação de Sites e Aplicações
+    </title>
+    <meta
+      name="description"
+      content="Desenvolvedor Full Stack especializado em criação de sites modernos e aplicações web. Java, React, Next.js e mais."
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #0099ff;
+        --primary-dark: #0077cc;
+        --accent: #00d4ff;
+        --background: #0a0e27;
+        --surface: #1a1f3a;
+        --surface-light: rgba(26, 31, 58, 0.6);
+        --text-primary: #e0e0e0;
+        --text-secondary: #b0b8d4;
+        --text-muted: #7a8099;
+        --border: rgba(0, 212, 255, 0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background: linear-gradient(
+          135deg,
+          var(--background) 0%,
+          var(--surface) 100%
+        );
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* NAVEGAÇÃO */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 14, 39, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        padding: 15px 0;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -1px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* HERO SECTION */
+      .hero {
+        padding-top: 120px;
+        padding-bottom: 80px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 153, 255, 0.05) 0%,
+          rgba(0, 212, 255, 0.05) 100%
+        );
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .hero-title {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 700;
+        line-height: 1.2;
+        background: linear-gradient(
+          135deg,
+          var(--accent) 0%,
+          var(--primary) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        max-width: 500px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 14px 32px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        color: var(--background);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(0, 212, 255, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(0, 212, 255, 0.1);
+        color: #00ffff;
+        border-color: #00ffff;
+      }
+
+      .hero-profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-profile img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 16px;
+        border: 2px solid var(--accent);
+        box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* SEÇÕES */
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 60px;
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* SERVIÇOS */
+      .services {
+        background: rgba(26, 31, 58, 0.3);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.05),
+          rgba(0, 153, 255, 0.05)
+        );
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 40px;
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .service-card:hover {
+        border-color: var(--accent);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.1),
+          rgba(0, 153, 255, 0.1)
+        );
+        box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+        transform: translateY(-8px);
+      }
+
+      .service-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .service-card h3 {
+        font-size: 20px;
+        color: var(--accent);
+        margin-bottom: 15px;
+      }
+
+      .service-card p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+      }
+
+      /* TECNOLOGIAS */
+      .technologies {
+        background: rgba(10, 14, 39, 0.5);
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+      }
+
+      .tech-category {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.05),
+          rgba(0, 153, 255, 0.05)
+        );
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--accent);
+        border-radius: 12px;
+        padding: 25px;
+        transition: var(--transition);
+      }
+
+      .tech-category:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.1),
+          rgba(0, 153, 255, 0.1)
+        );
+        border-color: var(--accent);
+        box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+        transform: translateY(-4px);
+      }
+
+      .tech-category h3 {
+        color: var(--accent);
+        font-size: 16px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tech-badge {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.2),
+          rgba(0, 153, 255, 0.2)
+        );
+        color: var(--accent);
+        border: 1px solid rgba(0, 212, 255, 0.4);
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .tech-badge:hover {
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        color: var(--background);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      /* PROJETOS */
+      .projects {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.03),
+          rgba(0, 153, 255, 0.03)
+        );
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.05),
+          rgba(0, 153, 255, 0.05)
+        );
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 30px;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        height: 100%;
+      }
+
+      .project-card:hover {
+        border-color: var(--accent);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.1),
+          rgba(0, 153, 255, 0.1)
+        );
+        box-shadow: 0 16px 48px rgba(0, 212, 255, 0.2);
+        transform: translateY(-8px);
+      }
+
+      .project-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .project-category {
+        background: rgba(0, 212, 255, 0.2);
+        color: var(--accent);
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .project-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        white-space: nowrap;
+      }
+
+      .project-link:hover {
+        color: #00ffff;
+      }
+
+      .project-card h3 {
+        font-size: 20px;
+        color: var(--accent);
+        margin: 0;
+      }
+
+      .project-tech {
+        font-size: 13px;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .project-description {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        flex-grow: 1;
+      }
+
+      .project-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: auto;
+      }
+
+      .project-badges span {
+        background: rgba(0, 212, 255, 0.1);
+        color: var(--accent);
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      /* EXPERIÊNCIA */
+      .experience {
+        background: rgba(26, 31, 58, 0.3);
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, var(--accent), transparent);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        margin-bottom: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content {
+        grid-column: 1;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        grid-column: 2;
+      }
+
+      .timeline-marker {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        background: var(--accent);
+        border: 4px solid var(--background);
+        border-radius: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+      }
+
+      .timeline-content {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.05),
+          rgba(0, 153, 255, 0.05)
+        );
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 25px;
+      }
+
+      .experience-header h3 {
+        color: var(--accent);
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .company {
+        color: var(--text-secondary);
+        font-size: 15px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .period {
+        color: var(--text-muted);
+        font-size: 13px;
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .experience-details {
+        list-style: none;
+      }
+
+      .experience-details li {
+        color: var(--text-secondary);
+        font-size: 14px;
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .experience-details li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* CONTATO */
+      .contact {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.05),
+          rgba(0, 153, 255, 0.05)
+        );
+      }
+
+      .contact-subtitle {
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 18px;
+        margin-bottom: 60px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-methods {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 25px;
+      }
+
+      .contact-card {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.05),
+          rgba(0, 153, 255, 0.05)
+        );
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 35px;
+        text-align: center;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .contact-card:hover {
+        border-color: var(--accent);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 212, 255, 0.1),
+          rgba(0, 153, 255, 0.1)
+        );
+        box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+        transform: translateY(-8px);
+      }
+
+      .contact-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .contact-card h3 {
+        color: var(--accent);
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .contact-card p {
+        color: var(--text-secondary);
+      }
+
+      /* FOOTER */
+      .footer {
+        background: linear-gradient(135deg, var(--background), var(--surface));
+        border-top: 1px solid var(--border);
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      .footer .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer p {
+        color: var(--text-secondary);
+        font-size: 14px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 25px;
+      }
+
+      .social-links a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        color: #00ffff;
+      }
+
+      /* RESPONSIVO */
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 20px;
+          font-size: 14px;
+        }
+
+        .hero-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .hero-profile {
+          order: -1;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .timeline::before {
+          left: 0;
+        }
+
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline-item .timeline-content {
+          grid-column: 1 !important;
+        }
+
+        .timeline-marker {
+          left: 0;
+        }
+
+        .services-grid,
+        .tech-grid,
+        .projects-grid,
+        .contact-methods {
+          grid-template-columns: 1fr;
+        }
+
+        .footer .container {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 28px;
+        }
+
+        .section-title {
+          font-size: 24px;
+        }
+
+        .nav-links {
+          gap: 10px;
+          font-size: 12px;
+        }
+
+        .project-card,
+        .service-card,
+        .contact-card {
+          padding: 20px;
+        }
+      }
+
+      /* ANIMAÇÕES */
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .service-card,
+      .tech-category,
+      .project-card,
+      .contact-card {
+        animation: slideInUp 0.6s ease-out;
+      }
+
+      .service-card:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+
+      .service-card:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+
+      .service-card:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+    </style>
+  </head>
+  <body>
     <!-- NAVEGAÇÃO -->
     <nav class="navbar">
-        <div class="container nav-content">
-            <div class="logo">Vitor Jimenez</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#tecnologias">Stack</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </div>
+      <div class="container nav-content">
+        <div class="logo">Vitor Jimenez</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#tecnologias">Stack</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
     </nav>
 
     <!-- HERO SECTION -->
     <header class="hero" id="inicio">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">Criação de Sites e Aplicações Web Modernas</h1>
-                    <p class="hero-subtitle">Desenvolvedor Full Stack especializado em soluções digitais escaláveis e de alta performance</p>
-                    <div class="hero-buttons">
-                        <a href="#contato" class="btn btn-primary">Começar Projeto</a>
-                        <a href="#projetos" class="btn btn-secondary">Ver Projetos</a>
-                    </div>
-                </div>
-                <div class="hero-profile">
-                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQHt5ewjchszUQ/profile-displayphoto-crop_800_800/B4DZsGF98sLYAI-/0/1765333788652?e=1781136000&v=beta&t=Be-b6Cljw1fPhfI6BS5UNuPPM8P9zsyBoelsyG5StCU" alt="Vitor Jimenez">
-                </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              Criação de Sites e Aplicações Web Modernas
+            </h1>
+            <p class="hero-subtitle">
+              Desenvolvedor Full Stack especializado em soluções digitais
+              escaláveis e de alta performance
+            </p>
+            <div class="hero-buttons">
+              <a href="#contato" class="btn btn-primary">Começar Projeto</a>
+              <a href="#projetos" class="btn btn-secondary">Ver Projetos</a>
             </div>
+          </div>
+          <div class="hero-profile">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4D03AQHt5ewjchszUQ/profile-displayphoto-crop_800_800/B4DZsGF98sLYAI-/0/1765333788652?e=1781136000&v=beta&t=Be-b6Cljw1fPhfI6BS5UNuPPM8P9zsyBoelsyG5StCU"
+              alt="Vitor Jimenez"
+            />
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- SERVIÇOS -->
     <section class="services" id="servicos">
-        <div class="container">
-            <h2 class="section-title">Serviços que Ofereço</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Sites Modernos</h3>
-                    <p>Desenvolvimento de sites responsivos, rápidos e otimizados para conversão. Com design moderno e UX intuitiva.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>Aplicações Web</h3>
-                    <p>Aplicações web escaláveis com React, Next.js e tecnologias modernas. Interface interativa e backend robusto.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔌</div>
-                    <h3>APIs REST</h3>
-                    <p>Criação de APIs robustas com Spring Boot e Java. Segurança, performance e documentação completa.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">☁️</div>
-                    <h3>Deploy & Cloud</h3>
-                    <p>Implementação em cloud (AWS, GCP). Docker, Kubernetes e CI/CD para automação completa.</p>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Serviços que Ofereço</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <h3>Sites Modernos</h3>
+            <p>
+              Desenvolvimento de sites responsivos, rápidos e otimizados para
+              conversão. Com design moderno e UX intuitiva.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <h3>Aplicações Web</h3>
+            <p>
+              Aplicações web escaláveis com React, Next.js e tecnologias
+              modernas. Interface interativa e backend robusto.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔌</div>
+            <h3>APIs REST</h3>
+            <p>
+              Criação de APIs robustas com Spring Boot e Java. Segurança,
+              performance e documentação completa.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">☁️</div>
+            <h3>Deploy & Cloud</h3>
+            <p>
+              Implementação em cloud (AWS, GCP). Docker, Kubernetes e CI/CD para
+              automação completa.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- TECNOLOGIAS -->
     <section class="technologies" id="tecnologias">
-        <div class="container">
-            <h2 class="section-title">Stack Tecnológico</h2>
-            <div class="tech-grid">
-                <div class="tech-category">
-                    <h3>Frontend</h3>
-                    <div class="tech-list">
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">Next.js</span>
-                        <span class="tech-badge">TypeScript</span>
-                        <span class="tech-badge">Tailwind CSS</span>
-                        <span class="tech-badge">HTML/CSS</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3>Backend</h3>
-                    <div class="tech-list">
-                        <span class="tech-badge">Java</span>
-                        <span class="tech-badge">Spring Boot</span>
-                        <span class="tech-badge">Spring Security</span>
-                        <span class="tech-badge">REST APIs</span>
-                        <span class="tech-badge">Maven</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3>Banco de Dados</h3>
-                    <div class="tech-list">
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">MySQL</span>
-                        <span class="tech-badge">MongoDB</span>
-                        <span class="tech-badge">Redis</span>
-                        <span class="tech-badge">DynamoDB</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3>Cloud & DevOps</h3>
-                    <div class="tech-list">
-                        <span class="tech-badge">AWS</span>
-                        <span class="tech-badge">Docker</span>
-                        <span class="tech-badge">Kubernetes</span>
-                        <span class="tech-badge">Jenkins</span>
-                        <span class="tech-badge">Kafka</span>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Stack Tecnológico</h2>
+        <div class="tech-grid">
+          <div class="tech-category">
+            <h3>Frontend</h3>
+            <div class="tech-list">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Next.js</span>
+              <span class="tech-badge">TypeScript</span>
+              <span class="tech-badge">Tailwind CSS</span>
+              <span class="tech-badge">HTML/CSS</span>
             </div>
+          </div>
+          <div class="tech-category">
+            <h3>Backend</h3>
+            <div class="tech-list">
+              <span class="tech-badge">Java</span>
+              <span class="tech-badge">Spring Boot</span>
+              <span class="tech-badge">Spring Security</span>
+              <span class="tech-badge">REST APIs</span>
+              <span class="tech-badge">Maven</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3>Banco de Dados</h3>
+            <div class="tech-list">
+              <span class="tech-badge">PostgreSQL</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">MongoDB</span>
+              <span class="tech-badge">Redis</span>
+              <span class="tech-badge">DynamoDB</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3>Cloud & DevOps</h3>
+            <div class="tech-list">
+              <span class="tech-badge">AWS</span>
+              <span class="tech-badge">Docker</span>
+              <span class="tech-badge">Kubernetes</span>
+              <span class="tech-badge">Jenkins</span>
+              <span class="tech-badge">Kafka</span>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- PROJETOS DESTACADOS -->
     <section class="projects" id="projetos">
-        <div class="container">
-            <h2 class="section-title">Projetos Destacados</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-top">
-                        <div class="project-category">Full Stack</div>
-                        <a href="https://github.com/vitorjimenez/bbb" target="_blank" class="project-link">GitHub →</a>
-                    </div>
-                    <h3>BBB Application</h3>
-                    <p class="project-tech">Next.js • Spring Boot • MySQL • Docker</p>
-                    <p class="project-description">Sistema completo inspirado no Big Brother Brasil com cadastro, login, gerenciamento de participantes, votação e estatísticas em tempo real.</p>
-                    <div class="project-badges">
-                        <span>Frontend Moderno</span>
-                        <span>Backend Robusto</span>
-                        <span>Containerizado</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-top">
-                        <div class="project-category">Frontend</div>
-                        <a href="https://github.com/vitorjimenez/desafio-frontend" target="_blank" class="project-link">GitHub →</a>
-                    </div>
-                    <h3>Desafio Técnico Mbras</h3>
-                    <p class="project-tech">React • Next.js • Tailwind CSS</p>
-                    <p class="project-description">Interface moderna para plataforma imobiliária com design diferenciado, responsiva e otimizada para conversão de leads.</p>
-                    <div class="project-badges">
-                        <span>UI/UX Moderno</span>
-                        <span>Responsivo</span>
-                        <span>Performance</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-top">
-                        <div class="project-category">Full Stack</div>
-                        <a href="https://github.com/vitorjimenez/goservice" target="_blank" class="project-link">GitHub →</a>
-                    </div>
-                    <h3>Go Service</h3>
-                    <p class="project-tech">Java • Spring • JavaScript</p>
-                    <p class="project-description">Plataforma de freelancing completa com sistema de contratos, pagamentos e avaliações. Desenvolvido em parceria com a Porto Seguro.</p>
-                    <div class="project-badges">
-                        <span>Microserviços</span>
-                        <span>Sistema Completo</span>
-                        <span>Production Ready</span>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Projetos Destacados</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-top">
+              <div class="project-category">Full Stack</div>
+              <a
+                href="https://github.com/vitorjimenez/bbb"
+                target="_blank"
+                class="project-link"
+                >GitHub →</a
+              >
             </div>
+            <h3>BBB Application</h3>
+            <p class="project-tech">Next.js • Spring Boot • MySQL • Docker</p>
+            <p class="project-description">
+              Sistema completo inspirado no Big Brother Brasil com cadastro,
+              login, gerenciamento de participantes, votação e estatísticas em
+              tempo real.
+            </p>
+            <div class="project-badges">
+              <span>Frontend Moderno</span>
+              <span>Backend Robusto</span>
+              <span>Containerizado</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-top">
+              <div class="project-category">Frontend</div>
+              <a
+                href="https://github.com/vitorjimenez/desafio-frontend"
+                target="_blank"
+                class="project-link"
+                >GitHub →</a
+              >
+            </div>
+            <h3>Desafio Técnico Mbras</h3>
+            <p class="project-tech">React • Next.js • Tailwind CSS</p>
+            <p class="project-description">
+              Interface moderna para plataforma imobiliária com design
+              diferenciado, responsiva e otimizada para conversão de leads.
+            </p>
+            <div class="project-badges">
+              <span>UI/UX Moderno</span>
+              <span>Responsivo</span>
+              <span>Performance</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-top">
+              <div class="project-category">Full Stack</div>
+              <a
+                href="https://github.com/vitorjimenez/goservice"
+                target="_blank"
+                class="project-link"
+                >GitHub →</a
+              >
+            </div>
+            <h3>Go Service</h3>
+            <p class="project-tech">Java • Spring • JavaScript</p>
+            <p class="project-description">
+              Plataforma de freelancing completa com sistema de contratos,
+              pagamentos e avaliações. Desenvolvido em parceria com a Porto
+              Seguro.
+            </p>
+            <div class="project-badges">
+              <span>Microserviços</span>
+              <span>Sistema Completo</span>
+              <span>Production Ready</span>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- EXPERIÊNCIA -->
     <section class="experience">
-        <div class="container">
-            <h2 class="section-title">Experiência Profissional</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="experience-header">
-                            <h3>Engenheiro de Software Pleno</h3>
-                            <span class="company">Banco Nacional de Paris - Cardif</span>
-                            <span class="period">Dez 2025 - Presente</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Desenvolvimento de microserviços em Spring Boot com alta disponibilidade</li>
-                            <li>Implementação de APIs RESTful com tratamento robusto de erros</li>
-                            <li>Otimização de queries SQL e índices de banco de dados Oracle</li>
-                            <li>Code Review e mentoria de desenvolvedores</li>
-                            <li>Implementação de filas resilientes com Dead Letter Topics</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="experience-header">
-                            <h3>Engenheiro de Software</h3>
-                            <span class="company">Porto Seguro</span>
-                            <span class="period">Agosto 2023 - Dez 2025</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Desenvolvimento de features em Salesforce (Apex, LWC, JavaScript)</li>
-                            <li>Criação de microsserviços com integração REST Contract-First</li>
-                            <li>Automatização que reduziu incidentes significativamente</li>
-                            <li>Troubleshooting e investigação de causa raiz com clientes</li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Experiência Profissional</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="experience-header">
+                <h3>Engenheiro de Software Pleno</h3>
+                <span class="company">Banco Nacional de Paris - Cardif</span>
+                <span class="period">Dez 2025 - Presente</span>
+              </div>
+              <ul class="experience-details">
+                <li>
+                  Desenvolvimento de microserviços em Spring Boot com alta
+                  disponibilidade
+                </li>
+                <li>
+                  Implementação de APIs RESTful com tratamento robusto de erros
+                </li>
+                <li>
+                  Otimização de queries SQL e índices de banco de dados Oracle
+                </li>
+                <li>Code Review e mentoria de desenvolvedores</li>
+                <li>
+                  Implementação de filas resilientes com Dead Letter Topics
+                </li>
+              </ul>
             </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="experience-header">
+                <h3>Engenheiro de Software</h3>
+                <span class="company">Porto Seguro</span>
+                <span class="period">Agosto 2023 - Dez 2025</span>
+              </div>
+              <ul class="experience-details">
+                <li>
+                  Desenvolvimento de features em Salesforce (Apex, LWC,
+                  JavaScript)
+                </li>
+                <li>
+                  Criação de microsserviços com integração REST Contract-First
+                </li>
+                <li>Automatização que reduziu incidentes significativamente</li>
+                <li>
+                  Troubleshooting e investigação de causa raiz com clientes
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- CONTATO -->
     <section class="contact" id="contato">
-        <div class="container">
-            <h2 class="section-title">Vamos Conversar?</h2>
-            <p class="contact-subtitle">Tenho interesse em novos projetos. Envie-me uma mensagem e responderei o mais rápido possível.</p>
-            <div class="contact-methods">
-                <a href="mailto:vitorjimenez16@gmail.com" class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>vitorjimenez16@gmail.com</p>
-                </a>
-                <a href="https://linkedin.com/in/vitorjimenez" target="_blank" class="contact-card">
-                    <div class="contact-icon">💼</div>
-                    <h3>LinkedIn</h3>
-                    <p>Vitor Jimenez</p>
-                </a>
-                <a href="https://github.com/vitorjimenez" target="_blank" class="contact-card">
-                    <div class="contact-icon">🐙</div>
-                    <h3>GitHub</h3>
-                    <p>github.com/vitorjimenez</p>
-                </a>
-                <a href="tel:+5511943907410" class="contact-card">
-                    <div class="contact-icon">📱</div>
-                    <h3>Telefone</h3>
-                    <p>(11) 94390-7410</p>
-                </a>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Vamos Conversar?</h2>
+        <p class="contact-subtitle">
+          Tenho interesse em novos projetos. Envie-me uma mensagem e responderei
+          o mais rápido possível.
+        </p>
+        <div class="contact-methods">
+          <a href="mailto:vitorjimenez16@gmail.com" class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <p>vitorjimenez16@gmail.com</p>
+          </a>
+          <a
+            href="https://linkedin.com/in/vitorjimenez"
+            target="_blank"
+            class="contact-card"
+          >
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <p>Vitor Jimenez</p>
+          </a>
+          <a
+            href="https://github.com/vitorjimenez"
+            target="_blank"
+            class="contact-card"
+          >
+            <div class="contact-icon">🐙</div>
+            <h3>GitHub</h3>
+            <p>github.com/vitorjimenez</p>
+          </a>
+          <a href="tel:+5511943907410" class="contact-card">
+            <div class="contact-icon">📱</div>
+            <h3>Telefone</h3>
+            <p>(11) 94390-7410</p>
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Vitor Jimenez. Desenvolvedor Web Full Stack.</p>
-            <div class="social-links">
-                <a href="https://github.com/vitorjimenez" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/vitorjimenez" target="_blank">LinkedIn</a>
-                <a href="mailto:vitorjimenez16@gmail.com">Email</a>
-            </div>
+      <div class="container">
+        <p>&copy; 2026 Vitor Jimenez. Desenvolvedor Web Full Stack.</p>
+        <div class="social-links">
+          <a href="https://github.com/vitorjimenez" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/vitorjimenez" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="mailto:vitorjimenez16@gmail.com">Email</a>
         </div>
+      </div>
     </footer>
-</body>
+  </body>
 </html>
